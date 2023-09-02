@@ -1,6 +1,6 @@
 public class LinkedListDeque<T> {
 
-    public class Node {
+    private class Node {
         private Node prev;
         private Node next;
         private T item;
@@ -65,7 +65,9 @@ public class LinkedListDeque<T> {
         if (sentinel.next == null) {
             return null;
         }
-        return sentinel.next.item;
+        T removalFirst = sentinel.next.item;
+        sentinel.next = sentinel.next.next;
+        return removalFirst;
     }
 
     public T removeLast() {
@@ -73,7 +75,9 @@ public class LinkedListDeque<T> {
         if (sentinel.prev == null) {
             return null;
         }
-        return sentinel.prev.item;
+        T removalLast = sentinel.prev.item;
+        sentinel.prev = sentinel.prev.prev;
+        return removalLast;
     }
 
     public T get(int index) {
