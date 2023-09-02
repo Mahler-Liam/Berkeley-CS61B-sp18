@@ -106,14 +106,14 @@ public class LinkedListDeque<T> {
         return getRecursiveHelper(current.next, index - 1);
     }
 
-    public static void main(String[] args) {
-        LinkedListDeque<Integer> test = new LinkedListDeque<>();
-        test.addFirst(1);
-        test.addFirst(3);
-        test.addLast(5);
-        test.printDeque();
-        test.removeFirst();
-        test.removeLast();
-        test.printDeque();
-    }
+    // public static void main(String[] args) {
+    //     LinkedListDeque<Integer> test = new LinkedListDeque<>();
+    //     test.addFirst(1);
+    //     test.addFirst(3);
+    //     test.addLast(5);
+    //     test.printDeque();
+    //     test.removeFirst();
+    //     test.removeLast();
+    //     test.printDeque();
+    // }
 }
