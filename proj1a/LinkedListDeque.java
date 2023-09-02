@@ -72,7 +72,6 @@ public class LinkedListDeque<T> {
     }
 
     public T removeLast() {
-        
         if (sentinel.prev == null) {
             return null;
         }
@@ -94,13 +93,15 @@ public class LinkedListDeque<T> {
     }
 
     public T getRecursive(int index) {
-        if (isEmpty()) {
-            return null;
-        }
-        if (index == 0) {
-            return sentinel.next.item;
-        }
-        sentinel.next = sentinel.next.next;
-        return getRecursive(index - 1);
+        return getRecursiveHelper(sentinel.next, index);
+    }
+    private T getRecursiveHelper(Node current, int index) {
+            if (current == null) {
+                return null;
+            }
+            if (index == 0) {
+                return current.item;
+            }
+        return getRecursiveHelper(current.next, index - 1);
     }
 }
