@@ -32,11 +32,13 @@ public class LinkedListDeque<T> {
     public void addFirst(T item) {
         sentinel.next = new Node(item, sentinel, sentinel.next);
         size += 1;
+        
     }
 
     public void addLast(T item) {
         sentinel.prev = new Node(item, sentinel.prev, sentinel);
         size += 1;
+        
     }
 
     public boolean isEmpty() {
@@ -82,7 +84,6 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
-        
         for (int i = 0; i <= size; i++) {
             if (i == index) {
                 break;
@@ -96,12 +97,23 @@ public class LinkedListDeque<T> {
         return getRecursiveHelper(sentinel.next, index);
     }
     private T getRecursiveHelper(Node current, int index) {
-            if (current == null) {
-                return null;
-            }
-            if (index == 0) {
-                return current.item;
-            }
+        if (current == null) {
+            return null;
+        }
+        if (index == 0) {
+            return current.item;
+        }
         return getRecursiveHelper(current.next, index - 1);
+    }
+
+    public static void main(String[] args) {
+        LinkedListDeque<Integer> test = new LinkedListDeque<>();
+        test.addFirst(1);
+        test.addFirst(3);
+        test.addLast(5);
+        test.printDeque();
+        test.removeFirst();
+        test.removeLast();
+        test.printDeque();
     }
 }

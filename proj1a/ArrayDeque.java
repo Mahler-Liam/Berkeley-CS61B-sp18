@@ -81,13 +81,13 @@ public class ArrayDeque<T> {
         return removalLast;
     }
 
-    public T get(int index) {
+    public T get(int index) { 
         if (isEmpty()) {
             return null;
         }
-        if (items[index] == null) {
+        if (index >= size) {
             return null;
         }
-        return items[index];
+        return items[(front + index) % items.length];
     }
 }
