@@ -89,6 +89,7 @@ public class LinkedListDeque<T> {
         lastNode.prev.next = sentinel;
         lastNode.prev = null;
         lastNode.next = null;
+        size -= 1;
         return removal;
     }
 

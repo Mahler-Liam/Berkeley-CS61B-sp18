@@ -11,8 +11,12 @@ public class ArrayDeque<T> {
     }
     private void resize(int capacity) {
         T[] a = (T []) new Object[capacity];
-        System.arraycopy(items, 0, a, 0, size);
+        for (int i = 0; i < size; i++) {
+            a[i] = items[(front + i) % items.length];
+        }
         items = a;
+        front = 0;
+        rear = size - 1;
     }
     public void addFirst(T item) {
         if (size == items.length) {
@@ -28,6 +32,7 @@ public class ArrayDeque<T> {
             resize(size * 2);
         }
         rear = (rear + 1) % items.length;
+        items[rear] = item;
         size += 1;
     }
 
@@ -48,9 +53,9 @@ public class ArrayDeque<T> {
         }
         int index = front;
         for (int i = 0; i < size; i++) {
-            System.out.print(items[i] + " ");
-            index = (index + 1) % items.length;
+            System.out.print(items[(index + i) % items.length] + " ");
         }
+        System.out.println();
     }
 
     public T removeFirst() {
@@ -62,7 +67,7 @@ public class ArrayDeque<T> {
         front = (front + 1) % items.length;
         size -= 1;
         if (size < (items.length / 4)) {
-            resize(size * 2);
+            resize(items.length / 2);
         }
         return removalFirst;
     }
@@ -76,7 +81,7 @@ public class ArrayDeque<T> {
         rear = (rear - 1 + items.length) % items.length;
         size -= 1;
         if (size < (items.length / 4)) {
-            resize(size * 2);
+            resize(items.length / 2);
         }
         return removalLast;
     }
