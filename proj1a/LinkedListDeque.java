@@ -80,7 +80,7 @@ public class LinkedListDeque<T> {
     }
 
     public T removeLast() {
-        if (sentinel.prev == null) {
+        if (isEmpty()) {
             return null;
         }
         Node lastNode = sentinel.prev;
