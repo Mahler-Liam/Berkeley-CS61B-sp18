@@ -21,6 +21,8 @@ public class LinkedListDeque<T> {
 
     public LinkedListDeque() {
         sentinel = new Node(null, null);
+        sentinel.prev = sentinel;
+        sentinel.next = sentinel;
         size = 0;
     }
     // public LinkedListDeque(T item) {
@@ -30,15 +32,17 @@ public class LinkedListDeque<T> {
     // }
 
     public void addFirst(T item) {
-        sentinel.next = new Node(item, sentinel, sentinel.next);
+        Node newNode = new Node(item, sentinel, sentinel.next);
+        sentinel.next.prev = newNode;
+        sentinel.next = newNode;
         size += 1;
-        
     }
 
     public void addLast(T item) {
-        sentinel.prev = new Node(item, sentinel.prev, sentinel);
+        Node newNode = new Node(item, sentinel.prev, sentinel);
+        sentinel.prev.next = newNode;
+        sentinel.prev = newNode;
         size += 1;
-        
     }
 
     public boolean isEmpty() {
@@ -53,44 +57,50 @@ public class LinkedListDeque<T> {
     }
 
     public void printDeque() {
-        for (int i = 0; i < size; i++) {
-            if (sentinel.next == null) {
-                return;
-            }
-            System.out.print(sentinel.next.item + " ");
-            sentinel.next = sentinel.next.next;
+        Node currentNode = sentinel.next;
+        while (currentNode != sentinel) {
+            System.out.println(currentNode.item + " ");
+            currentNode = currentNode.next;
         }
+        System.out.println();
     }
 
     public T removeFirst() {
-        
-        if (sentinel.next == null) {
+        if (isEmpty()) {
             return null;
         }
-        T removalFirst = sentinel.next.item;
-        sentinel.next = sentinel.next.next;
+        Node firstNode = sentinel.next;
+        T removal = firstNode.item;
+        sentinel.next = firstNode.next;
+        firstNode.next.prev = sentinel;
+        firstNode.prev = null;
+        firstNode.next = null;
         size -= 1;
-        return removalFirst;
+        return removal;
     }
 
     public T removeLast() {
         if (sentinel.prev == null) {
             return null;
         }
-        T removalLast = sentinel.prev.item;
-        sentinel.prev = sentinel.prev.prev;
-        size -= 1;
-        return removalLast;
+        Node lastNode = sentinel.prev;
+        T removal = lastNode.item;
+        sentinel.prev = lastNode.prev;
+        lastNode.prev.next = sentinel;
+        lastNode.prev = null;
+        lastNode.next = null;
+        return removal;
     }
 
     public T get(int index) {
-        for (int i = 0; i <= size; i++) {
-            if (i == index) {
-                break;
-            }
-            sentinel.next = sentinel.next.next;
+        Node currentNode = sentinel.next;
+        if (index >= size) {
+            return null;
         }
-        return sentinel.next.item;
+        for (int i = 0; i < index; i++) {
+            currentNode = currentNode.next;
+        }
+        return currentNode.item;
     }
 
     public T getRecursive(int index) {
@@ -106,14 +116,4 @@ public class LinkedListDeque<T> {
         return getRecursiveHelper(current.next, index - 1);
     }
 
-    // public static void main(String[] args) {
-    //     LinkedListDeque<Integer> test = new LinkedListDeque<>();
-    //     test.addFirst(1);
-    //     test.addFirst(3);
-    //     test.addLast(5);
-    //     test.printDeque();
-    //     test.removeFirst();
-    //     test.removeLast();
-    //     test.printDeque();
-    // }
 }
