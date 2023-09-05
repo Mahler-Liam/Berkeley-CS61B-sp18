@@ -1,5 +1,6 @@
-import org.junit.Test;
 import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 public class TestPalindrome {
     // You must use this palindrome, and not instantiate
@@ -17,24 +18,24 @@ public class TestPalindrome {
     } //Uncomment this class once you've created your Palindrome class.
     @Test
     public void testIsPalindrome() {
-        assertTrue("Test1 failed, expected True but False", palindrome.isPalindrome(""));
-        assertTrue("Test2 failed, expected True but False", palindrome.isPalindrome("a"));
-        assertTrue("Test3 failed, expected True but False", palindrome.isPalindrome("aaccbbbbccaa"));
+        assertTrue(palindrome.isPalindrome(""));
+        assertTrue(palindrome.isPalindrome("a"));
+        assertTrue(palindrome.isPalindrome("accbbbbcca"));
 
-        assertFalse("Test4 failed, expected False but True", palindrome.isPalindrome("horse"));
-        assertFalse("Test5 failed, expected False but True", palindrome.isPalindrome("aaabbaa"));
-        assertFalse("Test6 failed, expected False but True", palindrome.isPalindrome("ababba"));
+        assertFalse(palindrome.isPalindrome("horse"));
+        assertFalse(palindrome.isPalindrome("aaabbaa"));
+        assertFalse(palindrome.isPalindrome("ababba"));
 
     }
     @Test
     public void testIsPalindrome2() {
         CharacterComparator cc = new OffByOne();
-        assertTrue("Test1 failed, expected True but False", palindrome.isPalindrome("flake", cc));
-        assertTrue("Test2 failed, expected True but False", palindrome.isPalindrome("", cc));
-        assertTrue("Test3 failed, expected True but False", palindrome.isPalindrome("c", cc));
+        assertTrue(palindrome.isPalindrome("flake", cc));
+        assertTrue(palindrome.isPalindrome("", cc));
+        assertTrue(palindrome.isPalindrome("c", cc));
 
-        assertFalse("Test4 failed, expected False but True", palindrome.isPalindrome("asender", cc));
-        assertFalse("Test5 failed, expected False but True", palindrome.isPalindrome("aa", cc));
-        assertFalse("Test6 failed, expected False but True", palindrome.isPalindrome("aba", cc));
+        assertFalse(palindrome.isPalindrome("asender", cc));
+        assertFalse(palindrome.isPalindrome("aa", cc));
+        assertFalse(palindrome.isPalindrome("aba", cc));
     }
 }

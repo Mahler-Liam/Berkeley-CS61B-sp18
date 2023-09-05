@@ -1,10 +1,10 @@
 public class Palindrome {
     public Deque<Character> wordToDeque(String word) {
-        Deque<Character> word_deque = new LinkedListDeque<>();
+        Deque<Character> wordDeque = new LinkedListDeque<>();
         for (int i = 0; i < word.length(); i++) {
-            word_deque.addLast(word.charAt(i));
+            wordDeque.addLast(word.charAt(i));
         }
-        return word_deque;
+        return wordDeque;
     }
     public boolean isPalindrome(String word) {
         if (word == null || word.length() <= 1) {
@@ -18,7 +18,6 @@ public class Palindrome {
         return true;
     }
     public boolean isPalindrome(String word, CharacterComparator cc) {
-        cc = new OffByOne();
         if (word == null || word.length() <= 1) {
             return true;
         }
