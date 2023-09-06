@@ -6,6 +6,7 @@ public class Palindrome {
         }
         return wordDeque;
     }
+
     public boolean isPalindrome(String word) {
         if (word == null || word.length() <= 1) {
             return true;
@@ -17,6 +18,7 @@ public class Palindrome {
         }
         return true;
     }
+
     public boolean isPalindrome(String word, CharacterComparator cc) {
         if (word == null || word.length() <= 1) {
             return true;
