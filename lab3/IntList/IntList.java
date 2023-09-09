@@ -118,13 +118,13 @@ public class IntList {
     }
 
     public static IntList reverse(IntList A) {
-        if (A == null) {
+        if (A == null || A.rest == null) {
             return A;
         }
-        int front = A.first;
-        IntList temp = new IntList(front, null);
-        A = A.rest;
-        return catenate(reverse(A), temp);
+        IntList reversed = reverse(A.rest);
+        A.rest.rest = A;
+        A.rest = null;
+        return reversed;
     }
 
 
@@ -261,6 +261,11 @@ public class IntList {
         }
         out.format(")");
         return out.toString();
+    }
+
+    public static void main(String[] args) {
+        IntList A = IntList.of(1, 2, 3, 4);
+        IntList.reverse(A);
     }
 }
 
